@@ -24,12 +24,15 @@ npm test
 ```
 
 ## Search Approach
-The app uses keyword overlap matching:
-1. The query is split into individual words e.g. "reset password" becomes ["reset", "password"]
-2. Each word is checked against the FAQ question and answer text
-3. A score is given based on how many words match
-4. FAQs are sorted by score (highest first)
-5. The top 3 results are shown
+## Search Approach
+The app uses TF-IDF (Term Frequency-Inverse Document Frequency) with Cosine Similarity:
+1. Each FAQ question and answer is tokenized into individual words
+2. TF (Term Frequency) measures how often a word appears in a single FAQ
+3. IDF (Inverse Document Frequency) rewards rare words and penalizes common words
+4. A TF-IDF vector is built for both the query and each FAQ
+5. Cosine Similarity measures how closely the query vector matches each FAQ vector
+6. FAQs are sorted by similarity score (highest first)
+7. The top 3 results are shown
 
 ## Screenshots
 

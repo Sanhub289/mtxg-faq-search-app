@@ -5,9 +5,11 @@ const faqs = [
     { id: 1, question: "How do I reset my password?", answer: "Click forgot password on login screen.", category: "Account" },
     { id: 2, question: "How do I update my billing information?", answer: "Go to billing settings page.", category: "Billing" },
     { id: 3, question: "Why is the app running slow?", answer: "Try clearing your browser cache.", category: "Technical" },
+    { id: 4, question: "How do I cancel my subscription?", answer: "Go to settings and click cancel subscription.", category: "Billing" },
+    { id: 5, question: "How do I contact customer support?", answer: "Email us at support@example.com.", category: "Account" },
 ];
 
-describe("searchFaqs", () => {
+describe("searchFaqs TF-IDF", () => {
     it("returns at least one result for a matching query", () => {
         const results = searchFaqs("password", faqs);
         expect(results.length).toBeGreaterThan(0);
@@ -24,7 +26,12 @@ describe("searchFaqs", () => {
     });
 
     it("returns max 3 results", () => {
-        const results = searchFaqs("how", faqs);
+        const results = searchFaqs("how do i", faqs);
         expect(results.length).toBeLessThanOrEqual(3);
+    });
+
+    it("most relevant result is ranked first", () => {
+        const results = searchFaqs("billing", faqs);
+        expect(results[0].category).toBe("Billing");
     });
 });
