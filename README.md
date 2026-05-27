@@ -2,8 +2,8 @@
 
 ## Overview
 This is a simple FAQ search application built with React and Vite.
-Users can type a question into the search box and the app finds the top 3 most relevant FAQ entries using keyword matching.
-The app displays the question, answer, and category for each result.
+Users can type a question into the search box and the app finds the top 3 most relevant FAQ entries using TF-IDF with Cosine Similarity.
+The app displays the question, answer, and category for each result, and supports filtering by category.
 
 ## How to Run
 
@@ -53,13 +53,13 @@ The app uses TF-IDF (Term Frequency-Inverse Document Frequency) with Cosine Simi
 - TF-IDF does not understand synonyms or semantic meaning
 - No backend REST API
 - No GitHub Actions workflow
-- Case sensitive partial matches only
+- Search ranking may be less accurate with very short or generic queries
 
 ## How I Would Upgrade This
 - Use sentence embeddings (e.g. OpenAI or HuggingFace) for semantic search
 - Add a vector database like Pinecone to store and retrieve embeddings
 - Add a REST API (POST /api/search) for the search logic
-- Add category filter dropdown on the UI
+- Add GitHub Actions workflow to run tests automatically on push
 
 ## Hours Spent
 Approximately 5 hours
