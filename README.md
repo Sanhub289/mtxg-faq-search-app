@@ -24,7 +24,6 @@ npm test
 ```
 
 ## Search Approach
-## Search Approach
 The app uses TF-IDF (Term Frequency-Inverse Document Frequency) with Cosine Similarity:
 1. Each FAQ question and answer is tokenized into individual words
 2. TF (Term Frequency) measures how often a word appears in a single FAQ
@@ -63,4 +62,4 @@ The app uses TF-IDF (Term Frequency-Inverse Document Frequency) with Cosine Simi
 - Add category filter dropdown on the UI
 
 ## Hours Spent
-Approximately 4 hours
+Approximately 5 hours
