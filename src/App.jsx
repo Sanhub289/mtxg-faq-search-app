@@ -6,16 +6,21 @@ function App() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [message, setMessage] = useState("");
+  const [category, setCategory] = useState("All");
 
   const handleSearch = () => {
-    // If empty query, show warning message
     if (!query.trim()) {
       setMessage("⚠️ Please enter a search query.");
       setResults([]);
       return;
     }
 
-    const found = searchFaqs(query, faqs);
+    // Filter by category first if not "All"
+    const filteredFaqs = category === "All"
+      ? faqs
+      : faqs.filter((faq) => faq.category === category);
+
+    const found = searchFaqs(query, filteredFaqs);
 
     if (found.length === 0) {
       setMessage("❌ No results found.");
@@ -26,7 +31,6 @@ function App() {
     }
   };
 
-  // Allow pressing Enter key to search
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleSearch();
@@ -38,7 +42,7 @@ function App() {
       <h1>🔍 FAQ Search</h1>
       <p>Type a question to find answers from our FAQ.</p>
 
-      <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+      <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
         <input
           type="text"
           value={query}
@@ -53,6 +57,21 @@ function App() {
         >
           Search
         </button>
+      </div>
+
+      {/* Category Filter Dropdown */}
+      <div style={{ marginBottom: "20px" }}>
+        <label style={{ marginRight: "10px", fontWeight: "bold" }}>Filter by Category:</label>
+        <select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          style={{ padding: "8px", borderRadius: "6px", border: "1px solid #ccc", fontSize: "14px" }}
+        >
+          <option value="All">All</option>
+          <option value="Billing">Billing</option>
+          <option value="Technical">Technical</option>
+          <option value="Account">Account</option>
+        </select>
       </div>
 
       {/* Show message if any */}

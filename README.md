@@ -42,15 +42,18 @@ The app uses TF-IDF (Term Frequency-Inverse Document Frequency) with Cosine Simi
 ### Search Results
 ![Results](./screenshots/results.png)
 
+### No Results Found
+![No Results](./screenshots/no-results.png)
+
 ## Sample Queries
 - `reset password`
 - `billing`
 - `app slow`
 
 ## Known Limitations
-- Uses simple keyword matching, does not understand synonyms or sentence meaning
-- No category filter dropdown
+- TF-IDF does not understand synonyms or semantic meaning
 - No backend REST API
+- No GitHub Actions workflow
 - Case sensitive partial matches only
 
 ## How I Would Upgrade This
